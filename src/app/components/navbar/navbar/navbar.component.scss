@@ -1,0 +1,17 @@
+.navbar {
+  height: 10vh;
+  @media (max-width: 992px) {
+    height: auto;
+  }
+  &-nav {
+    .nav-link {
+      border: solid 2px transparent;
+      padding: 0px 20px !important;
+      &:hover {
+        color: #009ad8 !important;
+        transition: 0.5s;
+        border-color: #009ad8 !important ;
+      }
+    }
+  }
+}

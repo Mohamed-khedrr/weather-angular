@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Poppins:wght@500;800&display=swap");
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+// variable
+$card-radius: 10px;
+$main-box-shadow: 0 1.5rem 4rem rgba(#000, 0.5);
+// ==========
