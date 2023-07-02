@@ -11,7 +11,8 @@ export class HomeComponent {
   defaultLocation: any;
 
   ngOnInit(): void {
-    this.defaultLocation = 'cairo';
+    this.defaultLocation =
+      this._weatherDataService.getDefaultLocation() || 'cairo';
     this.setLocation(null);
   }
 
@@ -47,7 +48,7 @@ export class HomeComponent {
 
   setLocation(e: any) {
     this._weatherDataService
-      .getWeatherData(e?.target.value ?? this.defaultLocation)
+      .getWeatherData(e?.target.value || this.defaultLocation)
       .subscribe((response) => (this.response = response));
   }
 }

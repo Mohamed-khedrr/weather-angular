@@ -32,4 +32,12 @@ export class WeatherDataService {
       .get<any>(`${this.baseUrl}key=${this.publicKey}&q=${location}&days=3`)
       .pipe(retry(2), catchError(this.handleError));
   }
+
+  setDefaultLocation(location: string) {
+    localStorage.setItem('weatherLocation', location);
+  }
+
+  getDefaultLocation() {
+    return localStorage.getItem('weatherLocation');
+  }
 }
