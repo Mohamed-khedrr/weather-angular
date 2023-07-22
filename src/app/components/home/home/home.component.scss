@@ -1,6 +1,10 @@
 @import "../../../shared/_global-styles";
 main {
 }
+.hide {
+  display: none;
+}
+
 .bg__container {
   height: 75vh;
   // background-image: url(../../../../assets/weather-imgs/background.png);
@@ -25,12 +29,21 @@ main {
 }
 
 .weather__details {
+  position: relative;
   box-shadow: 0 1.5rem 4rem rgba(#000, 0.5);
   border-radius: $card-radius;
 
   @media (max-width: 992px) {
     background-color: transparent !important ;
     box-shadow: none;
+  }
+  app-loader {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: #000000, $alpha: 0.9);
+    height: 100%;
   }
 }
 .weather__card {
