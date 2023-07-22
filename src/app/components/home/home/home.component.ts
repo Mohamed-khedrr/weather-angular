@@ -45,11 +45,30 @@ export class HomeComponent {
     'December',
   ];
 
-  da = new Date().getDay();
-  mo = new Date().getMonth();
-  date = new Date().getDate();
   response: any;
 
+  validateDayNum(day: number) {
+    return day + 1 < 7 ? day + 1 : day + 1 - 7;
+  }
+
+  getDayName(response: any, objNum: number) {
+    const currentDate = response.forecast.forecastday[objNum].date;
+    const currentDay = new Date(currentDate);
+    return this.days[this.validateDayNum(currentDay.getDay() - 1)];
+  }
+
+  getDayNumber(response: any, objNum: number) {
+    const currentDate = response.forecast.forecastday[objNum].date;
+    const currentDay = new Date(currentDate);
+    return currentDay.getDate();
+  }
+  getMonthName(response: any, objNum: number) {
+    const currentDate = response.forecast.forecastday[objNum].date;
+    const currentDay = new Date(currentDate);
+    return this.months[currentDay.getMonth()];
+  }
+
+  // debounce requests
   debounce(callback: Function, delay: number = 1000) {
     let timeOut: NodeJS.Timeout;
 
@@ -61,8 +80,10 @@ export class HomeComponent {
     };
   }
 
+  // giving debounce the callback function
   debounceGeneration = this.debounce(this.getData);
 
+  // sending request and subscribe response
   getData(event: any) {
     this._weatherDataService
       .getWeatherData(event?.target.value || this.defaultLocation)
@@ -72,6 +93,7 @@ export class HomeComponent {
     this.loading = false;
   }
 
+  // Keyup function
   setLocation(e: any) {
     this.loading = true;
     this.debounceGeneration(e);

@@ -12,12 +12,12 @@
 
         <div class="weather__details row w-100 my-5 mx-0  ">
           <!-- ==================== -->
-          <app-loader [hidden]="!loading"></app-loader>
+
           <!-- ==================== -->
           <div class="weather__card col-lg-4 gap-0 px-0 ">
             <div class="weather__card-header d-flex justify-content-between px-3 pt-2">
-              <p>{{days[da]}}</p>
-              <p>{{date}} {{months[mo]}}</p>
+              <p>{{getDayName(response , 0)}}</p>
+              <p>{{getDayNumber(response , 0)}} {{getMonthName(response , 0)}}</p>
             </div>
             <div class="weather__card-body  d-flex flex-column justify-content-center py-4 px-3">
               <p class="weather__location">{{response.location.name}} - <span>{{response.location.country}}</span></p>
@@ -34,10 +34,17 @@
             </div>
           </div>
           <div class="weather__card col-lg-4 gap-0 px-0 ">
+            <!-- ======== -->
+            <!-- <div class="weather__card-header d-flex justify-content-between px-3 pt-2">
+              <p>{{((da + 1) < 7) ? days[da+1]: days[da+1 -7]}}</p>
+                  <p>{{date}} {{months[mo]}}</p>
+            </div> -->
+            <!-- =========== -->
             <div class="weather__card-header d-flex justify-content-between px-3 pt-2">
-              <p>{{(da+2 <= 7 )? days[da+1]: days[6-(da+1)]}}</p>
-                  <!-- <p> {{months[mo]}}</p> -->
+              <p>{{getDayName(response, 1)}}</p>
+              <p>{{getDayNumber(response , 1)}} {{getMonthName(response ,1 ) }}</p>
             </div>
+            <!-- =========== -->
             <div class="weather__card-body  d-flex flex-column justify-content-center align-items-center py-4 px-3">
               <div class="">
                 <img src={{response.forecast.forecastday[2].day.condition.icon}} alt="weather status image"
@@ -50,10 +57,12 @@
             </div>
           </div>
           <div class="weather__card col-lg-4 gap-0 px-0 ">
+            <!-- =========== -->
             <div class="weather__card-header d-flex justify-content-between px-3 pt-2">
-              <p>{{(da+2 <= 7 )? days[da+2]: days[6-(da+2)]}}</p>
-                  <!-- <p>{{date}} {{months[mo]}}</p> -->
+              <p>{{getDayName(response, 2)}}</p>
+              <p>{{getDayNumber(response , 2)}} {{getMonthName(response ,2 ) }}</p>
             </div>
+            <!-- =========== -->
             <div class="weather__card-body   d-flex flex-column justify-content-center align-items-center py-4 px-3">
               <div class=" align-items-center">
                 <img src={{response.forecast.forecastday[2].day.condition.icon}} alt="weather status image"
@@ -65,6 +74,7 @@
               <p class="weather__status">{{response.forecast.forecastday[2].day.condition.text}}</p>
             </div>
           </div>
+          <app-loader [hidden]="!loading"></app-loader>
         </div>
       </div>
     </div>
